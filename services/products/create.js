@@ -39,5 +39,6 @@ module.exports = async (newProduct) => {
   isValidQty(quantity);
   isValidQtyType(quantity);
 
-  product.create(newProduct);
+  const result = product.create(newProduct);
+  return result;
 };
