@@ -1,6 +1,6 @@
 const express = require('express');
 const productRouter = require('./products/router');
-const salesRouter = require('./products/router');
+const salesRouter = require('./sales/router');
 
 const root = express.Router({ mergeParams: true });
 
