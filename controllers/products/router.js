@@ -3,7 +3,7 @@ const create = require('./create');
 const list = require('./list');
 const getById = require('./getbyId');
 const update = require('./update');
-const remove = require('./delete');
+const remove = require('./remove');
 
 const router = express.Router({ mergeParams: true });
 

@@ -11,7 +11,7 @@ const OPTIONS = {
 
 module.exports = async () => {
   try {
-    return await MongoClient.connect(MONGO_DB_URL, OPTIONS).db(DB_NAME);
+    return (await MongoClient.connect(MONGO_DB_URL, OPTIONS)).db(DB_NAME);
   } catch (error) {
     console.error(error);
     process.exit(1);

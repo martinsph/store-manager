@@ -1,11 +1,13 @@
 const { ObjectId } = require('mongodb');
 const connection = require('../connection');
 
-// função recebe a coleção e o filtro por id.
+// função recebe a coleção e o id a ser deletado.
 module.exports = async (collection, id) => {
   try {
     const connecting = await connection();
-    return connecting.collection(collection).findOne({ _id: ObjectId(id) });
+    const result = await connecting.collection(collection).deleteOne({ _id: new ObjectId(id) });
+
+    return result;
   } catch (error) {
     console.log(error);
   }
