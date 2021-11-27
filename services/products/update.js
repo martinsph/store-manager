@@ -1,13 +1,12 @@
 const product = require('../../models/entity')('products');
-const getByName = require('./getByName');
 
 const MAX_LENGTH = 5;
 
 const errors = {
   invalidName: { 
-    status: 422, code: 'invalid_data', message: '"name" lenght must be at least 5 character long' },
-  productExists: { 
-    status: 422, code: 'invalid_data', message: 'Product already exists' },
+    status: 422, 
+    code: 'invalid_data', 
+    message: '"name" length must be at least 5 characters long' },
   invalidQty: {
     status: 422, code: 'invalid_data', message: '"quantity" must be larger than or equal to 1' },
   invalidSQtyType: {
@@ -16,11 +15,6 @@ const errors = {
 
 const isValidName = (name) => {
   if (name.length <= MAX_LENGTH) throw errors.invalidName;
-};
-
-const nameExists = async (name) => {
-  const checkName = await getByName(name);
-  if (checkName !== null) throw errors.productExists;
 };
 
 const isValidQty = (quantity) => {
@@ -32,13 +26,19 @@ const isValidQtyType = (quantity) => {
 };
 
 module.exports = async (newProduct) => {
-  const { name, quantity } = newProduct;
+  const { id, name, quantity } = newProduct;
+  const productName = name;
+  const productQty = quantity;
 
   isValidName(name);
-  await nameExists(name);
   isValidQty(quantity);
   isValidQtyType(quantity);
 
-  const result = product.update(newProduct);
-  return result;
+  await product.update(newProduct);
+
+  return { 
+    _id: id,
+    name: productName,
+    quantity: productQty,
+  };
 };

@@ -5,7 +5,9 @@ const MAX_LENGTH = 5;
 
 const errors = {
   invalidName: { 
-    status: 422, code: 'invalid_data', message: '"name" lenght must be at least 5 character long' },
+    status: 422, 
+    code: 'invalid_data', 
+    message: '"name" length must be at least 5 characters long' },
   productExists: { 
     status: 422, code: 'invalid_data', message: 'Product already exists' },
   invalidQty: {

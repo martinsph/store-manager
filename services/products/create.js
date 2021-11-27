@@ -5,7 +5,9 @@ const MAX_LENGTH = 5;
 
 const errors = {
   invalidName: { 
-    status: 422, code: 'invalid_data', message: '"name" lenght must be at least 5 character long' },
+    status: 422, 
+    code: 'invalid_data', 
+    message: '"name" length must be at least 5 characters long' },
   productExists: { 
     status: 422, code: 'invalid_data', message: 'Product already exists' },
   invalidQty: {
@@ -33,12 +35,19 @@ const isValidQtyType = (quantity) => {
 
 module.exports = async (newProduct) => {
   const { name, quantity } = newProduct;
+  const productName = name;
+  const productQty = quantity;
 
-  isValidName(name);
-  await nameExists(name);
-  isValidQty(quantity);
-  isValidQtyType(quantity);
+  isValidName(productName);
+  await nameExists(productName);
+  isValidQty(productQty);
+  isValidQtyType(productQty);
 
-  const result = product.create(newProduct);
-  return result;
+  const result = await product.create(newProduct);
+
+  return { 
+    _id: result.insertedId,
+    name: productName,
+    quantity: productQty,
+  };
 };

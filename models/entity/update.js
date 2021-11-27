@@ -10,7 +10,7 @@ module.exports = async (collection, entity) => {
     const newQty = quantity;
     const connecting = await connection();
     const result = await connecting.collection(collection).updateOne(
-      { _id: new ObjectId(id) },
+      { _id: ObjectId(id) },
       {
         $set: {
           name: newName,
