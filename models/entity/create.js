@@ -4,7 +4,7 @@ const connection = require('../connection');
 module.exports = async (collection, entity) => {
   try {
     const connecting = await connection();
-    return connecting.collection(collection).insertOne({ entity });
+    return connecting.collection(collection).insertOne(entity);
   } catch (error) {
     console.log(error);
   }

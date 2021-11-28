@@ -2,7 +2,7 @@ const product = require('../../models/entity')('sales');
 
 const errors = {
   wrongId: { 
-    status: 422, code: 'invalid_data', message: 'Wrong id format' },
+    status: 404, code: 'not_found', message: 'Sale not found' },
 };
 
 const isValidId = async (result) => {
