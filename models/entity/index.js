@@ -11,5 +11,6 @@ module.exports = (collection) => ({
   getByName: async (name) => getByName(collection, name),
   getById: async (id) => getById(collection, id),
   update: async (entity) => update(collection, entity),
+  updateSales: async (entity) => update(collection, entity),
   remove: async (id) => remove(collection, id),
 });

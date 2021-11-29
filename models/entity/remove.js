@@ -5,7 +5,7 @@ const connection = require('../connection');
 module.exports = async (collection, id) => {
   try {
     const connecting = await connection();
-    const result = await connecting.collection(collection).deleteOne({ _id: new ObjectId(id) });
+    const result = await connecting.collection(collection).deleteOne({ _id: ObjectId(id) });
 
     return result;
   } catch (error) {
